@@ -1,31 +1,34 @@
 package com.cmm.wdflowers.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.cmm.wdflowers.R
+import com.cmm.wdflowers.databinding.MainFragmentBinding
+import com.cmm.wdflowers.ui.base.BaseBindingFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment() {
+private const val TAG = "MainFragment"
+
+class MainFragment : BaseBindingFragment<MainFragmentBinding>() {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    private val mainViewModel: MainViewModel by viewModel()
+    override fun getLayoutId() = R.layout.main_fragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Toast.makeText(context, mainViewModel.getUsers(), Toast.LENGTH_SHORT).show()
+
+        mainViewModel.getOrder()
+        mainViewModel.order().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, "listSize=${it.size}", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "onActivityCreated: $it")
+            viewBinding.message.text = it.toString()
+        })
     }
 }

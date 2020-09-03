@@ -1,8 +1,9 @@
 package com.cmm.wdflowers
 
 import android.app.Application
-import com.cmm.wdflowers.modules.appModule
-import com.cmm.wdflowers.modules.viewModelsModules
+import com.cmm.wdflowers.di.modules.appModule
+import com.cmm.wdflowers.di.modules.repositoryModule
+import com.cmm.wdflowers.di.modules.viewModelsModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +17,7 @@ class WDFlowersApplication : Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@WDFlowersApplication)
-            modules(listOf(appModule, viewModelsModules))
+            modules(listOf(appModule, repositoryModule, viewModelsModules))
         }
     }
 }
