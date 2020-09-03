@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WDFlowers</string>
+    <string name="orders_empty_state">There are no orders at the moment.</string>
 </resources>

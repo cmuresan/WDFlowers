@@ -6,7 +6,7 @@ import com.cmm.wdflowers.datasource.OrdersDataSourceImpl
 import com.cmm.wdflowers.datasource.api.OrdersApi
 import com.cmm.wdflowers.repositories.Repository
 import com.cmm.wdflowers.repositories.RepositoryImpl
-import com.cmm.wdflowers.ui.main.MainViewModel
+import com.cmm.wdflowers.ui.orders.OrdersViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
@@ -27,7 +27,7 @@ val repositoryModule = module {
 }
 
 val viewModelsModules = module {
-    viewModel { MainViewModel(get()) }
+    viewModel { OrdersViewModel(get()) }
 }
 
 private fun provideOkHttpClient() = OkHttpClient.Builder()

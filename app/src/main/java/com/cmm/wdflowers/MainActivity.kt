@@ -2,16 +2,16 @@ package com.cmm.wdflowers
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.cmm.wdflowers.ui.main.MainFragment
+import com.cmm.wdflowers.ui.orders.OrdersFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, OrdersFragment.newInstance())
                 .commitNow()
         }
     }
