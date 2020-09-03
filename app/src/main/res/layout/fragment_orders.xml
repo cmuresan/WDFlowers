@@ -13,6 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         tools:context=".ui.orders.OrdersFragment">
 
         <TextView
@@ -44,11 +46,15 @@
             android:id="@+id/ordersRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="@dimen/margin_16dp"
             android:visibility="@{viewModel.contentVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_order" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

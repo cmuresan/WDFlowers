@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="orderUiModel"
+            type="com.cmm.wdflowers.ui.orders.model.OrderUiModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/orderCard"
+        style="@style/MaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/orderImage"
+                android:layout_width="@dimen/item_image_size"
+                android:layout_height="@dimen/item_image_size"
+                android:contentDescription="@{orderUiModel.description}"
+                android:src="@drawable/ic_launcher_foreground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/orderTitle"
+                style="@style/Text.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:text="@{orderUiModel.description}"
+                app:layout_constraintBottom_toTopOf="@+id/orderDestination"
+                app:layout_constraintEnd_toStartOf="@id/orderPrice"
+                app:layout_constraintStart_toEndOf="@id/orderImage"
+                app:layout_constraintTop_toTopOf="@id/orderImage"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="First Order" />
+
+            <TextView
+                android:id="@+id/orderDestination"
+                style="@style/Text.Title.Subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:text="@{orderUiModel.deliverTo}"
+                app:layout_constraintBottom_toBottomOf="@id/orderImage"
+                app:layout_constraintEnd_toStartOf="@id/orderPrice"
+                app:layout_constraintStart_toEndOf="@id/orderImage"
+                app:layout_constraintTop_toBottomOf="@+id/orderTitle"
+                tools:text="First Destination" />
+
+            <TextView
+                android:id="@+id/orderPrice"
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:text="@{String.valueOf(orderUiModel.price)}"
+                app:layout_constraintBottom_toBottomOf="@id/orderImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/orderTitle"
+                app:layout_constraintTop_toTopOf="@id/orderImage"
+                tools:text="250" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

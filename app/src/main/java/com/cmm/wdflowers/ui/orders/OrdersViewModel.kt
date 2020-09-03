@@ -13,8 +13,10 @@ import kotlinx.coroutines.launch
 class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
 
     private val orderLiveData = MutableLiveData<List<OrderUiModel>>()
+    private val navigationLiveData = MutableLiveData<NavigationEvent>()
 
     fun orders(): LiveData<List<OrderUiModel>> = orderLiveData
+    fun navigation(): LiveData<NavigationEvent> = navigationLiveData
 
     fun getOrders() {
         setLoadingState()
@@ -37,6 +39,15 @@ class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
             }
         }
     }
+
+    fun navigateToOrderDetails(orderId: Int) {
+        //todo refine this
+    }
+}
+
+//TODO for now here
+enum class NavigationEvent {
+    DETAILS
 }
 
 private fun Order.toUiModel() = when {
