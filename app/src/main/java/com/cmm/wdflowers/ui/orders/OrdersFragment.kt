@@ -35,7 +35,9 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding>() {
         super.onActivityCreated(savedInstanceState)
 
         ordersViewModel.orders().observe(viewLifecycleOwner, Observer { orders ->
-            ordersAdapter?.setItems(orders)
+            orders?.let {
+                ordersAdapter?.setItems(orders)
+            }
         })
     }
 

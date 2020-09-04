@@ -12,10 +12,10 @@ import kotlinx.coroutines.launch
 
 class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
 
-    private val ordersLiveData = MutableLiveData<List<OrderUiModel>>()
+    private val ordersLiveData = MutableLiveData<List<OrderUiModel>?>()
     private val orderByIdLiveData = MutableLiveData<OrderUiModel>()
 
-    fun orders(): LiveData<List<OrderUiModel>> = ordersLiveData
+    fun orders(): LiveData<List<OrderUiModel>?> = ordersLiveData
     fun orderById(): LiveData<OrderUiModel> = orderByIdLiveData
 
     fun getOrders() {
@@ -32,8 +32,9 @@ class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
                         }
                         ordersLiveData.postValue(orders ?: emptyList())
                     }
-                    Status.Error -> {
-                        setEmptyState()//todo more like error
+                    is Status.Error -> {
+                        ordersLiveData.postValue(null)
+                        setErrorState(resource.status.stringResId)
                     }
                 }
             }

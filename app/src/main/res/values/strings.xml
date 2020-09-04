@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">WDFlowers</string>
+
     <string name="orders_empty_state">There are no orders at the moment.</string>
+
     <string name="product_name">Product name: %s</string>
     <string name="product_destination">Deliver to: %s</string>
     <string name="product_price">Price: %s</string>
+
+    <string name="no_internet_connection">No Internet connection.</string>
+    <string name="generic_error">There was a problem, please try again.</string>
 </resources>
