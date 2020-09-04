@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
 
 class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
 
-    private val orderLiveData = MutableLiveData<List<OrderUiModel>>()
-    private val navigationLiveData = MutableLiveData<NavigationEvent>()
+    private val ordersLiveData = MutableLiveData<List<OrderUiModel>>()
+    private val orderByIdLiveData = MutableLiveData<OrderUiModel>()
 
-    fun orders(): LiveData<List<OrderUiModel>> = orderLiveData
-    fun navigation(): LiveData<NavigationEvent> = navigationLiveData
+    fun orders(): LiveData<List<OrderUiModel>> = ordersLiveData
+    fun orderById(): LiveData<OrderUiModel> = orderByIdLiveData
 
     fun getOrders() {
         setLoadingState()
@@ -30,7 +30,7 @@ class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
                         } else {
                             setContentState()
                         }
-                        orderLiveData.postValue(orders ?: emptyList())
+                        ordersLiveData.postValue(orders ?: emptyList())
                     }
                     Status.Error -> {
                         setEmptyState()//todo more like error
@@ -40,15 +40,13 @@ class OrdersViewModel(private val repository: Repository) : BaseViewModel() {
         }
     }
 
-    fun navigateToOrderDetails(orderId: Int) {
-        //todo refine this
+    fun getOrder(orderId: Int) {
+        repository.getOrderById(orderId)?.toUiModel()?.let {
+            orderByIdLiveData.postValue(it)
+        }
     }
 }
 
-//TODO for now here
-enum class NavigationEvent {
-    DETAILS
-}
 
 private fun Order.toUiModel() = when {
     id == null -> null

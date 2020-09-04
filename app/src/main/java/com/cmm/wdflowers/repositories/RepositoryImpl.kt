@@ -7,13 +7,13 @@ import com.cmm.wdflowers.datasource.model.Status
 
 class RepositoryImpl(private val ordersDataSource: OrdersDataSource) : Repository {
 
-    private val currentOrder = mutableListOf<Order>()
+    private val orders = mutableListOf<Order>()
 
     override suspend fun getOrders(): Resource<List<Order>> {
         return ordersDataSource.getOrders().let { response ->
             if (response.isSuccessful) {
                 response.body()?.let { orders ->
-                    currentOrder.addAll(orders)
+                    this.orders.addAll(orders)
                 }
 
                 Resource(response.body(), Status.Success)
@@ -22,4 +22,7 @@ class RepositoryImpl(private val ordersDataSource: OrdersDataSource) : Repositor
             }
         }
     }
+
+    override fun getOrderById(orderId: Int) = orders.firstOrNull { it.id == orderId }
+
 }

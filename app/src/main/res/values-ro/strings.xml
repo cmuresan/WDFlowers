@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="orders_empty_state">Momentan nu există comenzi.</string>
+    <string name="product_name">Numele produsului: %s</string>
+    <string name="product_destination">Livrează către: %s</string>
+    <string name="product_price">Preț: %s</string>
 </resources>

@@ -46,7 +46,7 @@
 
             <TextView
                 android:id="@+id/orderDestination"
-                style="@style/Text.Title.Subtitle"
+                style="@style/Text.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_16dp"

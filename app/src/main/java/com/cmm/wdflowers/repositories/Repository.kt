@@ -5,4 +5,6 @@ import com.cmm.wdflowers.datasource.model.Resource
 
 interface Repository {
     suspend fun getOrders(): Resource<List<Order>>
+
+    fun getOrderById(orderId: Int): Order?
 }

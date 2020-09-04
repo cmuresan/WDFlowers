@@ -3,19 +3,17 @@ package com.cmm.wdflowers.ui.orders
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cmm.wdflowers.R
 import com.cmm.wdflowers.databinding.FragmentOrdersBinding
 import com.cmm.wdflowers.extensions.addSpaceItemDecoration
 import com.cmm.wdflowers.ui.base.BaseBindingFragment
+import com.cmm.wdflowers.ui.orders.details.ORDER_ID
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding>() {
-
-    companion object {
-        fun newInstance() = OrdersFragment()
-    }
 
     override fun getLayoutId() = R.layout.fragment_orders
 
@@ -39,15 +37,15 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding>() {
         ordersViewModel.orders().observe(viewLifecycleOwner, Observer { orders ->
             ordersAdapter?.setItems(orders)
         })
-
-        ordersViewModel.navigation().observe(viewLifecycleOwner, Observer {
-
-        })
     }
 
     private fun setupAdapter() {
         ordersAdapter = OrdersAdapter { orderId ->
-            ordersViewModel.navigateToOrderDetails(orderId)
+            val args = Bundle().apply {
+                putInt(ORDER_ID, orderId)
+            }
+            Navigation.findNavController(viewBinding.root)
+                .navigate(R.id.action_ordersFragment_to_orderDetailsFragment, args)
         }
     }
 
