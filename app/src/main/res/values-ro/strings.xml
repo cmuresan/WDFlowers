@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_empty_state">Momentan nu există comenzi.</string>
+
+    <string name="product_name">Numele produsului: %s</string>
+    <string name="product_destination">Livrează către: %s</string>
+    <string name="product_price">Preț: %s</string>
+
+    <string name="no_internet_connection">Fără conexiune la Internet.</string>
+    <string name="generic_error">A apărut o problemă, vă rugăm încercați din nou.</string>
+</resources>
